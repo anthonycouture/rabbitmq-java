@@ -5,27 +5,24 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 public class Send {
     private final static String QUEUE_NAME = "hello";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setUsername("anthony");
         factory.setPassword("anthony");
         factory.setPort(8081);
-        Connection connection = null;
-        try {
-            connection = factory.newConnection();
-            var channel =  connection.createChannel();
+        try (Connection connection = factory.newConnection();
+         var channel = connection.createChannel()) {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            for(int i = 1 ; i<11 ; i++)
+            for (int i = 1; i < 11; i++)
                 send(channel, i);
-        } catch (Exception e){
+        } catch (IOException | TimeoutException e) {
             e.printStackTrace();
-        }finally {
-            connection.close();
         }
     }
 
