@@ -18,15 +18,20 @@ public class Send {
         Connection connection = null;
         try {
             connection = factory.newConnection();
-            Channel channel =  connection.createChannel();
+            var channel =  connection.createChannel();
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            String message = "Hello World!";
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
-            System.out.println(" [x] Sent '" + message + "'");
+            for(int i = 1 ; i<11 ; i++)
+                send(channel, i);
         } catch (Exception e){
             e.printStackTrace();
         }finally {
             connection.close();
         }
+    }
+
+    public static void send(Channel channel, int i) throws IOException {
+        var message = "Hello World " + i;
+        channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+        System.out.println(" [x] Sent '" + message + "'");
     }
 }

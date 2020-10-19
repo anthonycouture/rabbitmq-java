@@ -10,19 +10,19 @@ public class Receive {
 
     public static void main(String[] argv) {
         try {
-            ConnectionFactory factory = new ConnectionFactory();
+            var factory = new ConnectionFactory();
             factory.setHost("localhost");
             factory.setUsername("anthony");
             factory.setPassword("anthony");
             factory.setPort(8081);
-            Connection connection = factory.newConnection();
-            Channel channel = connection.createChannel();
+            var connection = factory.newConnection();
+            var channel = connection.createChannel();
 
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-                String message = new String(delivery.getBody(), "UTF-8");
+                var message = new String(delivery.getBody(), "UTF-8");
                 System.out.println(" [x] Received '" + message + "'");
             };
             channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
