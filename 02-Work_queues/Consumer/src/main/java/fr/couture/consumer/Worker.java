@@ -12,13 +12,13 @@ public class Worker {
     private static final String TASK_QUEUE_NAME = "task_queue";
 
     public static void main(String[] argv) throws Exception {
-        ConnectionFactory factory = new ConnectionFactory();
+        var factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setUsername("anthony");
         factory.setPassword("anthony");
         factory.setPort(8081);
-        final Connection connection = factory.newConnection();
-        final Channel channel = connection.createChannel();
+        final var connection = factory.newConnection();
+        final var channel = connection.createChannel();
 
         channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
@@ -26,7 +26,7 @@ public class Worker {
         channel.basicQos(1);
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-            String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
+            var message = new String(delivery.getBody(), StandardCharsets.UTF_8);
 
             System.out.println(" [x] Received '" + message + "'");
             try {
