@@ -2,7 +2,6 @@ package fr.couture.producer;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.Connection;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -16,7 +15,7 @@ public class Send {
         factory.setUsername("anthony");
         factory.setPassword("anthony");
         factory.setPort(8081);
-        try (Connection connection = factory.newConnection();
+        try (var connection = factory.newConnection();
          var channel = connection.createChannel()) {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             for (int i = 1; i < 11; i++)
