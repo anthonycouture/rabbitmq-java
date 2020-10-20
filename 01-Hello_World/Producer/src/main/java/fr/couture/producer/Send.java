@@ -10,7 +10,7 @@ public class Send {
     private final static String QUEUE_NAME = "hello";
 
     public static void main(String[] args) {
-        ConnectionFactory factory = new ConnectionFactory();
+        var factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setUsername("anthony");
         factory.setPassword("anthony");
