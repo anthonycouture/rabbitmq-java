@@ -24,3 +24,9 @@ Pour démarrer le premier consumer : `mvn exec:exec -Darg1=warning -Darg2=error`
 Pour démarrer le second consumer : `mvn exec:exec -Darg=info`
 
 Pour démarrer le producer : `mvn exec:exec`
+
+### 05 Topics
+Pour démarrer le premier consumer : `mvn exec:exec -Darg1="kern.*" -Darg2="*.critical"`  
+Pour démarrer le second consumer : `mvn exec:exec -Darg1="#"`
+
+Pour démarrer le producer : `mvn exec:exec`
