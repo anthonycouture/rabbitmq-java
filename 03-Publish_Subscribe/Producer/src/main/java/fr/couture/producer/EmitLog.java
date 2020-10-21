@@ -19,7 +19,7 @@ public class EmitLog {
              Channel channel = connection.createChannel()) {
             channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
-            String message = argv.length < 1 ? "Hello World!" :
+            String message = argv.length < 1 ? "info: Hello World!" :
                     String.join(" ", argv);
 
             channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes(StandardCharsets.UTF_8));
