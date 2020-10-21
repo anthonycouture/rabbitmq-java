@@ -15,11 +15,11 @@ Pour démarrer un producer et un consumer :
 Pour démarrer un producer et deux consumers :  
 `mvn exec:exec`
 
-### Publish/Subscribe
+### 03 Publish/Subscribe
 Pour démarrer un producer et deux consumers :  
 `mvn exec:exec`
 
-### Routing
+### 04 Routing
 Pour démarrer le premier consumer : `mvn exec:exec -Darg1=warning -Darg2=error`  
 Pour démarrer le second consumer : `mvn exec:exec -Darg=info`
 
