@@ -14,3 +14,7 @@ Pour démarrer un producer et un consumer :
 ### 02 Work queues
 Pour démarrer un producer et deux consumers :  
 `mvn exec:exec`
+
+### Publish/Subscribe
+Pour démarrer un producer et deux consumers :  
+`mvn exec:exec`
