@@ -6,6 +6,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class NewTask {
 
@@ -21,12 +22,20 @@ public class NewTask {
              var channel = connection.createChannel()) {
             channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
 
-            var message = String.join(" ", argv);
+            var listmessage = new ArrayList<String>();
 
-            channel.basicPublish("", TASK_QUEUE_NAME,
-                    MessageProperties.PERSISTENT_TEXT_PLAIN,
-                    message.getBytes(StandardCharsets.UTF_8));
-            System.out.println(" [x] Sent '" + message + "'");
+            listmessage.add("test");
+            listmessage.add("test1");
+            listmessage.add(".");
+            listmessage.add("test2");
+            listmessage.add("test3");
+
+            for (String message : listmessage){
+                channel.basicPublish("", TASK_QUEUE_NAME,
+                        MessageProperties.PERSISTENT_TEXT_PLAIN,
+                        message.getBytes(StandardCharsets.UTF_8));
+                System.out.println(" [x] Sent '" + message + "'");
+            }
         }
     }
 
