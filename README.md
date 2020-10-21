@@ -30,3 +30,6 @@ Pour démarrer le premier consumer : `mvn exec:exec -Darg1="kern.*" -Darg2="*.cr
 Pour démarrer le second consumer : `mvn exec:exec -Darg1="#"`
 
 Pour démarrer le producer : `mvn exec:exec`
+
+### 06 Remote procedure call (RPC)
+Pour démarrer le client et le serveur : `mvn exec:exec`
